@@ -1,12 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-const spanish = "Spanish"
-const french = "French"
-const englishHelloPrefix = "Hello, "
-const spanishHelloPrefix = "Hola, "
-const frenchHelloPrefix = "Bonjour, "
+const ( // declared in a block
+	spanish = "Spanish"
+	french  = "French"
+
+	englishHelloPrefix = "Hello, "
+	spanishHelloPrefix = "Hola, "
+	frenchHelloPrefix  = "Bonjour, "
+)
 
 func Hello(name string, language string) string {
 
@@ -14,16 +19,23 @@ func Hello(name string, language string) string {
 		name = "World"
 	}
 
-	prefix := englishHelloPrefix // := declares and assigns, whereas = is just for assigning already declared
+	return greetingsPrefix(language) + name
 
+	// prefix := englishHelloPrefix // := declares and assigns, whereas = is just for assigning already declared
+}
+
+func greetingsPrefix(language string) (prefix string) {
+	// named return value (prefix string), creates return variable upfront and
+	// allows for just "return" to be used, it essentially presets the return value
 	switch language { // switch case for langauges
 	case spanish:
-		return spanishHelloPrefix + name
+		prefix = spanishHelloPrefix
 	case french:
-		return frenchHelloPrefix + name
+		prefix = frenchHelloPrefix
+	default: // default keyword for switch case
+		prefix = englishHelloPrefix
 	}
-
-	return prefix + name
+	return
 }
 
 func main() {
